@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>GENIE GUESSES</title>
+  <link rel="icon" href="imgs/icon.png">
+
+  <style>
+    :root{
+      --pastel-yellow:#ffd166;
+      --saffron-yellow:#fbbf24;
+      --line:#3a3a3a;
+    }
+    body{ background:black; color:white; }
+    button{
+      padding:10px 14px; border-radius:10px; border:0; cursor:pointer;
+      background:linear-gradient(180deg,var(--pastel-yellow),var(--saffron-yellow));
+      color:black; font-weight:700;
+    }
+    input[type="number"]{
+      padding:10px 12px; border-radius:10px; border:1px solid grey;
+      background:black; color:white;
+    }
+
+    #meta{ color:#bdbdbd; font-size:.95rem; margin-top:6px; }
+    #range{ color:#9b9b9b; font-size:.92rem; margin:2px 0 10px; }
+    #history{ margin-top:6px; }
+
+    .pill{
+      display:inline-block; border:1px solid var(--line); border-radius:999px;
+      padding:4px 10px; margin:4px 4px 0 0; font-size:.9rem; color:#ddd;
+    }
+    .hot{ border-color:#f59e0b; }    /* very close */
+    .cold{ border-color:#777; }      /* not close   */
+    .correct{ border-color:#22c55e; }/* nailed it   */
+    .bad{ border-color:#ef4444; }
+
+    .shake{ animation:shake .35s; }
+    @keyframes shake{
+      10%,90%{ transform:translateX(-2px) }
+      20%,80%{ transform:translateX(2px) }
+      30%,50%,70%{ transform:translateX(-4px) }
+      40%,60%{ transform:translateX(4px) }
+    }
+
+    .hidden{ display:none; }
+  </style>
+</head>
+
+<body>
+  <center>
+    <img id="genie" src="imgs/Logo.png" alt="Genie" /> <br>
+
+    <h2 id="title">Want to test your guessing abilities?</h2>
+
+    <button id="startBtn" onclick="Start()">START</button>
+
+    <!-- toggle to reveal history even on loss -->
+    <label style="display:block; margin:10px 0; color:#bbb; font-size:.95rem;">
+      <input id="revealOnLoss" type="checkbox" />
+      Show guess history even if I lose
+    </label>
+
+    <p id="result" role="status" aria-live="polite"></p>
+    <p id="range"></p>
+    <p id="meta"></p>
+    <div id="history"></div>
+
+    <script src="script.js"></script>
+  </center>
+</body>
+</html>
